@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Post;
 use Tests\TestCase;
+
 use function pest\Laravel\getJson;
 
 class PostApiTest extends TestCase
@@ -14,7 +15,7 @@ class PostApiTest extends TestCase
 
         static $migrated = false;
 
-            // Migrate only once (keeps data across tests)
+        // Migrate only once (keeps data across tests)
         if (!$migrated) {
             $this->artisan('migrate:fresh');
             $migrated = true;
@@ -27,8 +28,9 @@ class PostApiTest extends TestCase
 
         $response = $this->getJson('/api/posts');
 
-        $response->assertStatus(200)
-                 ->assertJsonCount(3, 'data');
+        $response
+            ->assertStatus(200)
+            ->assertJsonCount(3, 'data');
     }
 
     // test('it can list posts',function(){
@@ -57,8 +59,9 @@ class PostApiTest extends TestCase
 
         $response = $this->getJson("/api/posts/{$post->id}");
 
-        $response->assertStatus(200)
-                 ->assertJsonFragment(['id' => $post->id]);
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment(['id' => $post->id]);
     }
 
     public function test_it_can_update_a_post()
@@ -69,8 +72,9 @@ class PostApiTest extends TestCase
 
         $response = $this->putJson("/api/posts/{$post->id}", $data);
 
-        $response->assertStatus(200)
-                 ->assertJsonFragment(['title' => 'Updated Title']);
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment(['title' => 'Updated Title']);
     }
 
     public function test_it_can_delete_a_post()
@@ -79,8 +83,9 @@ class PostApiTest extends TestCase
 
         $response = $this->deleteJson("/api/posts/{$post->id}");
 
-        $response->assertStatus(200)
-                 ->assertJsonFragment(['message' => 'Post deleted successfully.']);
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment(['message' => 'Post deleted successfully.']);
     }
 
     public function test_console_command(): void
