@@ -24,9 +24,6 @@ class PostApiTest extends TestCase
             ->assertJsonCount(3, 'data');
     }
 
-    /**
-     * @test
-     */
     public function it_can_create_a_post()
     {
         $data = [
@@ -41,9 +38,6 @@ class PostApiTest extends TestCase
             ->assertJsonFragment(['title' => 'Test Post']);
     }
 
-    /**
-     * @test
-     */
     public function it_can_show_a_post()
     {
         $post = Post::factory()->create();
@@ -55,9 +49,6 @@ class PostApiTest extends TestCase
             ->assertJsonFragment(['id' => $post->id]);
     }
 
-    /**
-     * @test
-     */
     public function it_can_update_a_post()
     {
         $post = Post::factory()->create();
@@ -71,9 +62,6 @@ class PostApiTest extends TestCase
             ->assertJsonFragment(['title' => 'Updated Title']);
     }
 
-    /**
-     * @test
-     */
     public function it_can_delete_a_post()
     {
         $post = Post::factory()->create();
@@ -84,5 +72,9 @@ class PostApiTest extends TestCase
             ->assertStatus(200)
             ->assertJsonFragment(['message' => 'Post deleted successfully.']);
     }
+
+    public function test_console_command(): void
+    {
+        $this->artisan('inspire')->assertExitCode(0);
+    }
 }
-    
