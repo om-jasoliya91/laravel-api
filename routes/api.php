@@ -11,3 +11,11 @@ Route::get('/user', function (Request $request) {
 Route::middleware('throttle:10,1')->group(function () {
     Route::apiResource('posts', PostController::class);
 });
+
+use App\Http\Controllers\Api\UserController;
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('users', UserController::class)->middleware('auth:sanctum');
+    Route::post('/logout', [UserController::class, 'logout']);
+});
+Route::post('/login', [UserController::class, 'login']);

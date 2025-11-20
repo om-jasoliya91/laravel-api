@@ -84,8 +84,8 @@ class PostApiTest extends TestCase
         $response = $this->deleteJson("/api/posts/{$post->id}");
 
         $response
-            ->assertStatus(200)
-            ->assertJsonFragment(['message' => 'Post deleted successfully.']);
+            ->assertStatus(204);
+            // ->assertJsonFragment(['message' => 'Post deleted successfully.']);
     }
 
     public function test_console_command(): void

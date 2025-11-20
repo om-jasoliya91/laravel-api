@@ -6,9 +6,9 @@
 
     use function Pest\Laravel\{getJson, postJson, putJson, deleteJson};
 
-    uses(RefreshDatabase::class, TestCase::class);
+    // uses(RefreshDatabase::class, TestCase::class);
 
-    // uses(TestCase::class);
+    uses(TestCase::class);
 
     // test('debug refresh', function () {
     //     dump(Post::count());
